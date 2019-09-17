@@ -60,5 +60,34 @@ public class ControladorPetshop {
         }
         tabela.setModel(modelo);
     }
+
+    public static void alterar(ManutencaoPetshop man){
+        Petshop objeto = new Petshop();
+        //definir todos os atributos
+        objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
+        objeto.setNome(man.jtfNome.getText());
+        objeto.setEndereco(man.jtfEndereco.getText());
+        objeto.setNumero(Integer.parseInt(man.jtfNumero.getText()));
+        objeto.setAvaliacao(Integer.parseInt(man.jtfAvaliacao.getText()));
+        
+        boolean resultado = DaoPetshop.alterar(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }
+
+    public static void excluir(ManutencaoPetshop man){
+        Petshop objeto = new Petshop();
+        objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText())); //só precisa definir a chave primeira
+        
+        boolean resultado = DaoPetshop.excluir(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }
     
 }

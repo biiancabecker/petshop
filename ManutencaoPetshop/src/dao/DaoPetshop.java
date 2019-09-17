@@ -78,4 +78,34 @@ public class DaoPetshop {
         }
 }
      
+      public static boolean alterar(Petshop objeto) {
+        String sql = "UPDATE petshop SET nome = ?, endereco = ?, numero = ?, avaliacao = ? WHERE codigo=?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, objeto.getNome()); 
+            ps.setString(2, objeto.getEndereco());
+            ps.setInt(3, objeto.getNumero());
+            ps.setInt(4, objeto.getAvaliacao());
+            ps.setInt(5, objeto.getCodigo());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+      
+      public static boolean excluir(Petshop objeto) {
+        String sql = "DELETE FROM petshop WHERE codigo=?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, objeto.getCodigo());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+     
 }
